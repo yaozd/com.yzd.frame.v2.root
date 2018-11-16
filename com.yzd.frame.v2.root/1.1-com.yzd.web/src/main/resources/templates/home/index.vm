@@ -1,0 +1,8 @@
+#set($pageTitle="标题-home")
+<!--内容 begin-->
+
+<h1>home-index</h1>
+
+<!--内容 end-->
+
+<link rel="stylesheet" href="${filePath}/css/lib/base.css">

@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>$!pageTitle</title>
+</head>
+<body>
+
+<div>其他布局页面，当前 Layout URL : </div>
+<p/>
+
+    $body_content
+
+<p/>
+<div><a href="/">返回首页</a></div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+#set($filePath = $UrlHelperTool.getStaticFilePath())
+<html>
+<head>
+    <title>$!pageTitle</title>
+    <script src="/content/js/lib/jquery.js"></script>
+    <script src="/content/js/lib/axios.min.js"></script>
+    <script src="/content/js/lib/vue.js"></script>
+</head>
+<body>
+
+<div>默认布局页面，当前 Layout URL :</div>
+<p/>
+
+    $body_content
+
+<p/>
+<div><a href="/">返回首页</a></div>
+</body>
+</html>
