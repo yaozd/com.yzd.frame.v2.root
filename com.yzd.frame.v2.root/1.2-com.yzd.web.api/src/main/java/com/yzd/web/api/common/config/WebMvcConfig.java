@@ -3,6 +3,7 @@ package com.yzd.web.api.common.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.AntPathMatcher;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -32,6 +33,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
             registry.addResourceHandler("/swagger-ui.html").addResourceLocations(
                     "classpath:/noswagger");
         }
+    }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+
+        registry.addInterceptor(new CORSHandlerInterceptor()).addPathPatterns("/**");
+
     }
 
 }
