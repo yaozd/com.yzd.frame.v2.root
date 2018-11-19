@@ -9,6 +9,12 @@
 <body>
 
 <div>默认布局页面，当前 Layout URL :</div>
+<p>
+    $UrlHelperTool.getStaticFilePath() </br>
+    $filePath </br>
+    \#set(\$filePath = \$UrlHelperTool.getStaticFilePath()) </br>
+    \$filePath的作用域只能在当前default.vm模板中，不能跳到其他模板
+</p>
 <p/>
 
     $body_content

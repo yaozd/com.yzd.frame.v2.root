@@ -5,4 +5,4 @@
 
 <!--内容 end-->
 
-<link rel="stylesheet" href="${filePath}/css/lib/base.css">
+<link rel="stylesheet" href="$UrlHelperTool.getStaticFilePath()/css/lib/base.css">
