@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@PropertySource(value = "classpath:project.properties",ignoreResourceNotFound = true)
 public class ApplicationWeb {
     /**
      * Used when run as JAR
