@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
-@RequestMapping("/api/account")
-public class AccountController {
+@RequestMapping("${appPath}/api/account")
+public class AccountControllerAPI {
     @PostMapping("doLogin")
     public JsonResult doLogin(@ParamValid LoginForm loginForm) {
         return new JsonResultOk("doLogin") ;

@@ -1,4 +1,4 @@
-package com.yzd.web.api.common.config;
+package com.yzd.web.api.common.interceptorExt;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 

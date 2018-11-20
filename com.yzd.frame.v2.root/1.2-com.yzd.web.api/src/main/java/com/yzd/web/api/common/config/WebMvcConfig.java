@@ -1,5 +1,9 @@
 package com.yzd.web.api.common.config;
 
+import com.yzd.web.api.common.interceptorExt.ApiLoginInterceptor;
+import com.yzd.web.api.common.interceptorExt.ApiTokenInterceptor;
+import com.yzd.web.api.common.interceptorExt.CORSHandlerInterceptor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.AntPathMatcher;
@@ -34,11 +38,28 @@ public class WebMvcConfig implements WebMvcConfigurer {
                     "classpath:/noswagger");
         }
     }
+
+    @Value("${appPath}")
+    private String appPath;
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-
+        //解决前后端分离的 CORS 跨域资源共享问题
         registry.addInterceptor(new CORSHandlerInterceptor()).addPathPatterns("/**");
-
+        //Token验证
+        registry.addInterceptor(new ApiTokenInterceptor())
+                .addPathPatterns(getFullPath("/api/**"))
+                //除“/api/token/getBaseToken”以外所有的请求都必须包含Token信息
+                .excludePathPatterns(getFullPath("/api/token/getBaseToken"));
+        //
+        //登录验证
+        registry.addInterceptor(new ApiLoginInterceptor())
+                .addPathPatterns(getFullPath("/api/user/**"))
+                .addPathPatterns(getFullPath("/api/account/doLogout"));
+        //
+    }
+    private String getFullPath(String path){
+        String fullPath=String.format("/%s%s",appPath,path);
+        return StringUtils.replace(fullPath,"//","/");
     }
 
 }
