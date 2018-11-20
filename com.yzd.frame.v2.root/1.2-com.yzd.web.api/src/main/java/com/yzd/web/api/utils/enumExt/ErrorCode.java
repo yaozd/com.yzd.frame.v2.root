@@ -5,7 +5,8 @@ package com.yzd.web.api.utils.enumExt;
  */
 public enum ErrorCode {
     //参数验证失败
-    ParamValidFail(1000);
+    ParamValidFail(1000),
+    TokenValidFail(1001);
 
 
     ErrorCode(int value){

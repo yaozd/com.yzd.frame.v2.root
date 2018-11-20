@@ -49,7 +49,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(new ApiTokenInterceptor())
                 .addPathPatterns(getFullPath("/api/**"))
                 //除“/api/token/getBaseToken”以外所有的请求都必须包含Token信息
-                .excludePathPatterns(getFullPath("/api/token/getBaseToken"));
+                .excludePathPatterns(getFullPath("/api/token/**"));
         //
         //登录验证
         registry.addInterceptor(new ApiLoginInterceptor())

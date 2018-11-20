@@ -1,5 +1,6 @@
 package com.yzd.web.api.common.config;
 
+import com.yzd.web.api.common.exceptionExt.TokenValidException;
 import com.yzd.web.api.common.exceptionExt.UnauthorizedException;
 import com.yzd.web.api.common.paramValidExt.ParamValidException;
 import com.yzd.web.api.model.response._base.JsonResult;
@@ -40,5 +41,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         //生产上会用统一的的输出格式- new JsonResultList
         //当前属于api请求参数的格式验证异常-所以状态是200
         return new JsonResultError(ex.getMessage(), ErrorCode.ParamValidFail.getValue());
+    }
+    /***
+     * 请求参数格式不正确
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler(TokenValidException.class)
+    @ResponseBody
+    JsonResult handleControllerExceptionForTokenValid(Exception ex) {
+        //生产上会用统一的的输出格式- new JsonResultList
+        //当前属于api请求参数的格式验证异常-所以状态是200
+        return new JsonResultError(ex.getMessage(), ErrorCode.TokenValidFail.getValue());
     }
 }
