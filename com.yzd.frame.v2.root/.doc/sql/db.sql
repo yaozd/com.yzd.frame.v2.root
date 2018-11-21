@@ -1,10 +1,10 @@
-drop table if exists tb_test_data;
+drop table if exists tb_temp_test;
 
 /*==============================================================*/
-/* Table: tb_test_data (临时的测试表)                                        */
+/* Table: tb_temp_test (临时的测试表)                                        */
 /* 阿里巴巴Java开发规范手册.pdf                                 */
 /*==============================================================*/
-create table tb_test_data
+create table tb_temp_test
 (
    id                   bigint  not null auto_increment,
    name                 varchar(30),
