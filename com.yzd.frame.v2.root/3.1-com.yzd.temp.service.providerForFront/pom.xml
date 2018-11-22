@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
-    <artifactId>com.yzd.temp.service.providerForBack</artifactId>
+    <artifactId>com.yzd.temp.service.providerForFront</artifactId>
 
     <dependencies>
         <dependency>
@@ -52,5 +52,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
