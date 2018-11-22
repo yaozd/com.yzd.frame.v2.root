@@ -16,6 +16,9 @@
         <module>3.3-com.yzd.db.temp.entity</module>
         <module>2.1-com.yzd.dubbo.service.inf</module>
         <module>2.1-com.yzd.dubbo.service.provider</module>
+        <module>3.2-com.yzd.temp.service.inf</module>
+        <module>3.2-com.yzd.temp.service.impl</module>
+        <module>3.1-com.yzd.temp.service.providerForBack</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -88,6 +91,53 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>1.0.11</version>
+            </dependency>
+            <!--========================================================-->
+            <!-- dubbo 参数验证 begin-->
+            <dependency>
+                <groupId>javax.el</groupId>
+                <artifactId>javax.el-api</artifactId>
+                <version>2.2.4</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>2.0.1.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>6.0.13.Final</version>
+            </dependency>
+            <!-- dubbo 参数验证 end-->
+            <!--========================================================-->
+            <!--依赖设置-->
+            <!--父模块pom中使用dependencyManagement来管理的依赖，在子模块pom中就不需要再写版本号了，exclusion元素也不需要再写。-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>2.5.3</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>0.10</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <!--========================================================-->
         </dependencies>
