@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("${appPath}/api1/temp")
+@RequestMapping("${appPath}/api/temp")
 public class TempControllerAPI {
 
     @Autowired
@@ -25,7 +25,7 @@ public class TempControllerAPI {
         tempTestDTO.setPassword("123456");
         //Integer result = tempTestService.save(new TempTestDTO());
         Integer result = tempTestService.save(tempTestDTO);
-        log.info("result=", result);
+        log.info("result={}", result);
         return new JsonResultOk("save");
 
     }

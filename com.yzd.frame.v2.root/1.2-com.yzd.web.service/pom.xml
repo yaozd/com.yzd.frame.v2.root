@@ -34,5 +34,15 @@
         <artifactId>com.yzd.temp.service.inf</artifactId>
         <version>${project.parent.version}</version>
     </dependency>
+    <!--========================================================-->
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>dubbo</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.101tec</groupId>
+        <artifactId>zkclient</artifactId>
+    </dependency>
+    <!--========================================================-->
 </dependencies>
 </project>

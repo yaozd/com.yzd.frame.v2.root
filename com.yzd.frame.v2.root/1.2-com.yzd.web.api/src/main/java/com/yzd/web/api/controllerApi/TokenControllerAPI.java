@@ -13,7 +13,7 @@ import com.yzd.web.api.model.request.token.RefreshTokenFrom;
 import com.yzd.web.api.model.response._base.JsonResult;
 import com.yzd.web.api.model.response._base.JsonResultData;
 import com.yzd.web.api.model.response._base.JsonResultError;
-import io.swagger.annotations.Api;
+import com.yzd.web.api.utils.fastjsonExt.FastJsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -38,7 +38,8 @@ public class TokenControllerAPI {
     @PostMapping("getBaseToken")
     public JsonResult getBaseToken(@RequestBody @ParamValid GetBaseTokenForm form, String sign){
         if(log.isDebugEnabled()){
-            log.debug(SignUtil.create(form));
+            String input=FastJsonUtil.serialize(form);
+            log.debug("getBaseToken方法：请求参数={};请求签名={};正确签名={}",input,sign,SignUtil.create(form));
         }
         filterForGetBaseToken(form,sign);
         //创建 token,当user为null时是未登录的访问token

@@ -11,6 +11,7 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -42,7 +43,9 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.yzd.web.api.controllerApi"))
                 .paths(PathSelectors.any())
-                .build().globalOperationParameters(getGlobalParamInHeader());
+                .build()
+                .securitySchemes(securitySchemes());
+                //.globalOperationParameters(getGlobalParamInHeader());
     }
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
@@ -54,7 +57,8 @@ public class SwaggerConfig implements WebMvcConfigurer {
     }
 
     /***
-     * 全局head变量
+     * 全局head变量-每个api都增加一个参数
+     * 效果：可以看到所有的api都有一个输入Authorization的地方
      * @return
      */
     private List<Parameter> getGlobalParamInHeader(){
@@ -68,6 +72,17 @@ public class SwaggerConfig implements WebMvcConfigurer {
         pars.add(tokenParam.build());
         return pars;
     }
+
+    /***
+     * 统一的配置全局head变量
+     * @return
+     */
+    private List<ApiKey> securitySchemes() {
+        List<ApiKey> apiKeyList=new ArrayList<>(5);
+        apiKeyList.add(new ApiKey("Authorization", "Authorization", "header"));
+        return apiKeyList;
+    }
+
 
 
 }
