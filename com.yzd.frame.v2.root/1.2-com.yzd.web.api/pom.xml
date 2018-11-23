@@ -22,6 +22,11 @@
             <artifactId>com.yzd.common.token</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.yzd.frame.v2.root</groupId>
+            <artifactId>com.yzd.web.service</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
         <!--========================================================-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -55,7 +60,16 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
-
+        <!--========================================================-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>
+        </dependency>
+        <!--========================================================-->
     </dependencies>
 
     <build>

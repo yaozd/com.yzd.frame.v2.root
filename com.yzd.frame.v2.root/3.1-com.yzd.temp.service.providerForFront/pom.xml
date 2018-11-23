@@ -24,12 +24,12 @@
         <dependency>
             <groupId>com.yzd.frame.v2.root</groupId>
             <artifactId>com.yzd.temp.service.inf</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>com.yzd.frame.v2.root</groupId>
             <artifactId>com.yzd.temp.service.impl</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <!--========================================================-->
         <!--依赖设置-->

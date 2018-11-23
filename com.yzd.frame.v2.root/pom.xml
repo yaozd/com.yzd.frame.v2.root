@@ -20,6 +20,7 @@
         <module>3.2-com.yzd.temp.service.impl</module>
         <module>3.1-com.yzd.temp.service.providerForBack</module>
         <module>3.1-com.yzd.temp.service.providerForFront</module>
+        <module>1.2-com.yzd.web.service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
