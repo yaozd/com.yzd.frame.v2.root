@@ -22,6 +22,11 @@
             <artifactId>com.yzd.db.temp.entity</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.yzd.frame.v2.root</groupId>
+            <artifactId>com.yzd.db.temp.dao</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
         <!--========================================================-->
     </dependencies>
 

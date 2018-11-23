@@ -3,15 +3,20 @@ package com.yzd.temp.service.providerForFront;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 
 import java.util.concurrent.CountDownLatch;
 
 
 @SpringBootApplication
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+@ComponentScan({"com.yzd.db.temp.dao"})
 @ImportResource("classpath:com-yzd-temp-service-providerForFront.xml")
 public class ApplicationTempForProviderFront {
     private static final Logger logger = LoggerFactory.getLogger(ApplicationTempForProviderFront.class);
@@ -26,7 +31,7 @@ public class ApplicationTempForProviderFront {
      * @throws InterruptedException
      */
     public static void main(String[] args) throws InterruptedException {
-        init();
+        //init();
         logger.info("项目启动--BEGIN");
         ApplicationContext ctx = SpringApplication.run(ApplicationTempForProviderFront.class, args);
         CountDownLatch closeLatch = ctx.getBean(CountDownLatch.class);

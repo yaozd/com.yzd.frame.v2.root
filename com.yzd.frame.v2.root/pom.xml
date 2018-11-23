@@ -124,6 +124,10 @@
                         <groupId>org.springframework</groupId>
                         <artifactId>spring</artifactId>
                     </exclusion>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
@@ -140,6 +144,13 @@
                         <artifactId>slf4j-log4j12</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <!--========================================================-->
+            <!--解决dubbo与druid日志问题：log4j:WARN No appenders could be found for logger (com.alibaba.dubbo.common.logger.LoggerFactory)-->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>log4j-over-slf4j</artifactId>
+                <version>1.7.25</version>
             </dependency>
             <!--========================================================-->
         </dependencies>
