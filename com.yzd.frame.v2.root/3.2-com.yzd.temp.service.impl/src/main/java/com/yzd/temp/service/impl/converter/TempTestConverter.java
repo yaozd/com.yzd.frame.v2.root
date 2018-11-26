@@ -1,6 +1,6 @@
 package com.yzd.temp.service.impl.converter;
 
-import com.yzd.db.temp.entity.TbTempTest;
+import com.yzd.db.temp.entity.table.TbTempTest;
 import com.yzd.temp.service.inf.bo.tempTest.TempTestBO;
 import com.yzd.temp.service.inf.dto.tempTest.TempTestDTO;
 

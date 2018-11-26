@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yzd.db.temp.dao.mapper.TbTempTestMapper">
-  <resultMap id="BaseResultMap" type="com.yzd.db.temp.entity.TbTempTest">
+  <resultMap id="BaseResultMap" type="com.yzd.db.temp.entity.table.TbTempTest">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -13,21 +13,21 @@
     id, name, password, gmt_create, gmt_modified, gmt_is_deleted
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from tb_temp_test
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <insert id="insert" parameterType="com.yzd.db.temp.entity.TbTempTest">
+  <insert id="insert" parameterType="com.yzd.db.temp.entity.table.TbTempTest">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into tb_temp_test (name, password, gmt_create, 
-      gmt_modified, gmt_is_deleted)
-    values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
-      #{gmtModified,jdbcType=TIMESTAMP}, #{gmtIsDeleted,jdbcType=INTEGER})
+    insert into tb_temp_test (name, password, gmt_create,
+    gmt_modified, gmt_is_deleted)
+    values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP},
+    #{gmtModified,jdbcType=TIMESTAMP}, #{gmtIsDeleted,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.yzd.db.temp.entity.TbTempTest">
+  <insert id="insertSelective" parameterType="com.yzd.db.temp.entity.table.TbTempTest">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -67,7 +67,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yzd.db.temp.entity.TbTempTest">
+  <update id="updateByPrimaryKeySelective" parameterType="com.yzd.db.temp.entity.table.TbTempTest">
     update tb_temp_test
     <set>
       <if test="name != null">
@@ -88,7 +88,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.yzd.db.temp.entity.TbTempTest">
+  <update id="updateByPrimaryKey" parameterType="com.yzd.db.temp.entity.table.TbTempTest">
     update tb_temp_test
     set name = #{name,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

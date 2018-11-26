@@ -1,7 +1,7 @@
 package com.yzd.db.temp.dao.dao;
 
 import com.yzd.db.temp.dao.dao.base._BaseUnitTest;
-import com.yzd.db.temp.entity.TbTempTest;
+import com.yzd.db.temp.entity.table.TbTempTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

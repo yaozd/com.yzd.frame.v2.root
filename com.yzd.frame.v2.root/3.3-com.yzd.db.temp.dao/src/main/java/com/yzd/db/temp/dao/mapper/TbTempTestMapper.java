@@ -1,6 +1,6 @@
 package com.yzd.db.temp.dao.mapper;
 
-import com.yzd.db.temp.entity.TbTempTest;
+import com.yzd.db.temp.entity.table.TbTempTest;
 
 public interface TbTempTestMapper {
     int insert(TbTempTest record);

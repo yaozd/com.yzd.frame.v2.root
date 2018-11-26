@@ -1,4 +1,4 @@
-package com.yzd.db.temp.entity.entityExt;
+package com.yzd.db.temp.entity.entityExt.page;
 
 /**
  * Created by Administrator on 2016/10/21.

@@ -1,4 +1,4 @@
-package com.yzd.db.temp.entity;
+package com.yzd.db.temp.entity.table;
 
 import java.util.Date;
 
