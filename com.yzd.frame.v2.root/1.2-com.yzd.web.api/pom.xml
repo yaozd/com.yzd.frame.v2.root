@@ -27,6 +27,11 @@
             <artifactId>com.yzd.web.service</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.yzd.frame.v2.root</groupId>
+            <artifactId>7.1-com.yzd.logging</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
         <!--========================================================-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

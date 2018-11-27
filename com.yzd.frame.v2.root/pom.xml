@@ -19,6 +19,7 @@
         <module>3.1-com.yzd.temp.service.providerForBack</module>
         <module>3.1-com.yzd.temp.service.providerForFront</module>
         <module>1.2-com.yzd.web.service</module>
+        <module>7.1-com.yzd.logging</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
