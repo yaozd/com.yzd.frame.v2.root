@@ -9,9 +9,15 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
-    <artifactId>7.1-com.yzd.logging</artifactId>
+    <artifactId>com.yzd.logging</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>com.yzd.frame.v2.root</groupId>
+            <artifactId>com.yzd.logging.sensitive</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <!--========================================================-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>

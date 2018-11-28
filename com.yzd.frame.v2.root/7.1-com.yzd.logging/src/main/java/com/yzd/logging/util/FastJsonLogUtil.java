@@ -3,6 +3,7 @@ package com.yzd.logging.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.ValueFilter;
+import com.yzd.logging.sensitive.SensitiveLogInfo;
 
 import java.lang.reflect.Field;
 

@@ -31,6 +31,11 @@
             <artifactId>com.yzd.temp.service.impl</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.yzd.frame.v2.root</groupId>
+            <artifactId>com.yzd.logging.dubbo</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
         <!--========================================================-->
         <!--依赖设置-->
         <!--父模块pom中使用dependencyManagement来管理的依赖，在子模块pom中就不需要再写版本号了，exclusion元素也不需要再写。-->

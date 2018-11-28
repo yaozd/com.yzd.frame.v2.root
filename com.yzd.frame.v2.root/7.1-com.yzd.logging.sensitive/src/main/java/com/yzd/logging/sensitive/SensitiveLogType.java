@@ -1,4 +1,4 @@
-package com.yzd.logging.util;
+package com.yzd.logging.sensitive;
 
 /**
  * 敏感信息类型

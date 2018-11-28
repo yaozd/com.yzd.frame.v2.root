@@ -15,7 +15,7 @@
     <dubbo:consumer check="false" />
     <!-- zookeeper注册中心 -->
     <!--去掉超时重试机制-->
-    <dubbo:provider retries="0" timeout="60000" />
+    <dubbo:provider retries="0" timeout="60000" filter="mdcFilter,rpcRequestFilter"/>
     <!--<dubbo:registry protocol="zookeeper" address="zookeeper.shanxinbaoxian.cc:2181" />-->
     <!-- <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" />-->
     <!-- 使用multicast广播注册中心暴露服务地址 -->

@@ -3,7 +3,7 @@ package com.yzd.web.api.common.config;
 import com.yzd.web.api.common.interceptorExt.ApiLoginInterceptor;
 import com.yzd.web.api.common.interceptorExt.ApiTokenInterceptor;
 import com.yzd.web.api.common.interceptorExt.CORSHandlerInterceptor;
-import com.yzd.web.api.common.interceptorExt.LogTraceInterceptor;
+import com.yzd.web.api.common.logging.LogTraceInterceptor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

@@ -12,7 +12,7 @@
     <dubbo:registry  id="defaultRegister" protocol="zookeeper"  address="${dubbo.registry.address}" group="${dubbo.registry.group}" file="${dubbo.application.name}.registry.cache" />
     <!--check="false":dubbo接口懒惰,惰性检查,懒加载,接口检查,服务检查.开启.启用,打开-->
     <!--timeout="10000":远程调用的超时时间为10秒-->
-    <dubbo:consumer check="false" />
+    <dubbo:consumer check="false" filter="mdcFilter"/>
     <!-- 使用multicast广播注册中心暴露发现服务地址 -->
     <!--<dubbo:registry protocol="zookeeper" address="zookeeper.shanxinbaoxian.cc:2181" />-->
     <!--<dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" />-->

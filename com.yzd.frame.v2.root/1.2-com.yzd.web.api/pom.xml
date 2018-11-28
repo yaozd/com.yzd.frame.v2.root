@@ -29,7 +29,12 @@
         </dependency>
         <dependency>
             <groupId>com.yzd.frame.v2.root</groupId>
-            <artifactId>7.1-com.yzd.logging</artifactId>
+            <artifactId>com.yzd.logging</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yzd.frame.v2.root</groupId>
+            <artifactId>com.yzd.logging.dubbo</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <!--========================================================-->
