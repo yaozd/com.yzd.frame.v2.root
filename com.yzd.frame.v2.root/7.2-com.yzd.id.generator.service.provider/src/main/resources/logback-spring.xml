@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
-    <property name="logFile" value="com.yzd.temp.service.providerForFront" />
+    <property name="logFile" value="com.yzd.id.generator.service.provider" />
     <property name="logPath" value="/data/log" />
     <property name="logPattern" value="[ELK=][%X{TRACE_ID}]-[%d{yyyy-MM-dd HH:mm:ss.SSS}]├%thread┤[%level]-[%logger]- %msg|%n"/>
     <logger name="org.springframework.web" level="INFO"/>

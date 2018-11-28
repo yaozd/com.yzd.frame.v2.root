@@ -22,6 +22,8 @@
         <module>7.1-com.yzd.logging</module>
         <module>7.1-com.yzd.logging.dubbo</module>
         <module>7.1-com.yzd.logging.sensitive</module>
+        <module>7.2-com.yzd.id.generator.service.inf</module>
+        <module>7.2-com.yzd.id.generator.service.provider</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -154,6 +156,11 @@
                 <version>1.7.25</version>
             </dependency>
             <!--========================================================-->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>21.0</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -163,6 +170,34 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <!-- 时间戳插件 start -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Timestamp>${maven.build.timestamp}</Timestamp>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Timestamp>${maven.build.timestamp}</Timestamp>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!-- 时间戳插件 end -->
+        </plugins>
+    </build>
     <repositories>
         <repository>
             <id>hb-snapshot</id>
