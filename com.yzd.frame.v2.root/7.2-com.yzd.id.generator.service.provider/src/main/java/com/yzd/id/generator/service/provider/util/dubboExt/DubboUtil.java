@@ -1,16 +1,12 @@
 package com.yzd.id.generator.service.provider.util.dubboExt;
 
-import com.alibaba.dubbo.common.utils.StringUtils;
-import lombok.extern.slf4j.Slf4j;
 
-import java.io.File;
-import java.io.FileReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLClassLoader;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Enumeration;
 import java.util.TimeZone;
@@ -18,11 +14,11 @@ import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
-@Slf4j
-public class DubboUtil {
 
+public class DubboUtil {
+    private static final Logger logger = LoggerFactory.getLogger(DubboUtil.class);
     /***
-     * dubbo-启动时属性设置
+     * dubbo运行初始化-启动时属性设置
      */
     public static void initForRun(){
         setLogInit();
@@ -40,18 +36,80 @@ public class DubboUtil {
     //设置dubbo打包的版本号
     private static String setPackageTimestamp() {
         String packageTimestamp=getTimestamp();
-        if(StringUtils.isBlank(packageTimestamp)){
+        if(isBlank(packageTimestamp)){
             packageTimestamp="没有找到【当前非Maven打包后运行】";
         }else {
             System.setProperty("dubbo.package.timestamp", packageTimestamp);
         }
-        log.info("项目打包时间截--timestamp:"+packageTimestamp);
+        logger.info("项目打包时间截--timestamp:"+packageTimestamp);
         return packageTimestamp;
     }
-    //private static final String MANIFEST_DIRECTORY_LOCATION = "META-INF" + File.separator + "MANIFEST.MF";
-    private static final String MANIFEST_DIRECTORY_LOCATION = "META-INF/MANIFEST.MF";
     private static String getTimestamp(){
-     return null;
+        URL url=getManifestURL();
+        if(url==null){
+            return null;
+        }
+        //logger.info(url.getPath());
+        InputStream is =null;
+        try {
+            is =url.openStream();
+            Manifest manifest = new Manifest(is);
+            Attributes attr = manifest.getMainAttributes();
+            String value = attr.getValue("Timestamp");
+            if(isBlank(value)){
+                return null;
+            }
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+            df.setTimeZone(TimeZone.getTimeZone("UTC"));
+            return new SimpleDateFormat("yyMMddHHmmss").format(df.parse(value));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }finally {
+            if(is!=null){
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
-
+    /***
+     * 获得本包的ManifestURL
+     */
+    private static URL  getManifestURL(){
+        //打包后本地包的默认路径
+        URL defaultURL = DubboUtil.class .getProtectionDomain().getCodeSource().getLocation();
+        String localPath=defaultURL.getFile();
+        int endIndex = localPath.indexOf("jar!")-1;
+        if(endIndex<0){
+            return null;
+        }
+        localPath=localPath.substring(0,endIndex);
+        Enumeration resEnum;
+        try {
+            resEnum = new MyResources().getClass().getClassLoader().getResources(JarFile.MANIFEST_NAME);
+            while (resEnum.hasMoreElements()) {
+                try {
+                    URL url = (URL)resEnum.nextElement();
+                    System.out.println(url.getFile());
+                    //凑数是否是当前程序的jar包
+                    if(!url.getFile().contains(localPath)){
+                        continue;
+                    }
+                    return url;
+                }
+                catch (Exception e) {
+                    // Silently ignore wrong manifests on classpath?
+                }
+            }
+        } catch (IOException e1) {
+            // Silently ignore wrong manifests on classpath?
+        }
+        return null;
+    }
+    private static boolean isBlank(String value){
+        return value==null||value.trim().length()==0;
+    }
+    static class MyResources{}
 }

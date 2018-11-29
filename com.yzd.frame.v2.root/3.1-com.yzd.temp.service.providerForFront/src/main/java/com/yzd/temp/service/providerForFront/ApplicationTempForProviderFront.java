@@ -1,5 +1,6 @@
 package com.yzd.temp.service.providerForFront;
 
+import com.yzd.temp.service.providerForFront.dubboExt.DubboUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -32,6 +33,7 @@ public class ApplicationTempForProviderFront {
      */
     public static void main(String[] args) throws InterruptedException {
         //init();
+        DubboUtil.initForRun();
         logger.info("项目启动--BEGIN");
         ApplicationContext ctx = SpringApplication.run(ApplicationTempForProviderFront.class, args);
         CountDownLatch closeLatch = ctx.getBean(CountDownLatch.class);
