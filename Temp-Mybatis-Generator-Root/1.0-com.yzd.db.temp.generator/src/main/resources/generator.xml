@@ -5,6 +5,8 @@
 <generatorConfiguration>
     <properties resource="application.properties" />
     <context id="DB2Tables"  targetRuntime="MyBatis3">
+        <!--SimplePlugin插件删除：int insert(TbTempTest record);int updateByPrimaryKey(TbTempTest record);-->
+        <plugin type="com.yzd.mybatis.plugin.SimplePlugin"/>
         <commentGenerator>
             <property name="suppressDate" value="true"/>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
