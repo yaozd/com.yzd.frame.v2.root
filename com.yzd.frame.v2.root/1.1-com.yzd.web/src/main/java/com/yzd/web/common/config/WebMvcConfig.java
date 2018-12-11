@@ -14,9 +14,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
     /***
      * Spring Boot 字符集设置 解决中文乱码方案
      * https://blog.csdn.net/sgrrmswtvt/article/details/81272144
+     * 暂时不推荐FilterRegistrationBean 的方式
+     * 推荐在application.properties的方式设置
      * @return
      */
-    @Bean
+    /*@Bean
     public FilterRegistrationBean filterRegistrationBean() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
@@ -24,7 +26,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         characterEncodingFilter.setEncoding("UTF-8");
         registrationBean.setFilter(characterEncodingFilter);
         return registrationBean;
-    }
+    }*/
     /**
      * SpringMvc_@RequestMapping设置Router Url大小写不敏感
      * http://www.cnblogs.com/gossip/p/5441358.html
