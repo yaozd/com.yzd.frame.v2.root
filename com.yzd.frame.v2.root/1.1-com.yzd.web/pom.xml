@@ -15,6 +15,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <!--静态资源文件版本号（css/js等）-->
+        <!--如果每次资源都会变化可以直接使用：build-helper-maven-plugin中的变量“${build.time}”来替换“${static.file.version}”-->
+        <static.file.version>20181212152601</static.file.version>
     </properties>
     <dependencies>
         <dependency>
@@ -83,19 +86,19 @@
                     <replacements>
                         <replacement>
                             <token>\.css\"\></token>
-                            <value>.css?v=${build.time}\"\></value>
+                            <value>.css?v=${static.file.version}\"\></value>
                         </replacement>
                         <replacement>
                             <token>\.css\'\></token>
-                            <value>.css?v=${build.time}\'\></value>
+                            <value>.css?v=${static.file.version}\'\></value>
                         </replacement>
                         <replacement>
                             <token>\.js\"\></token>
-                            <value>.js?v=${build.time}\"\></value>
+                            <value>.js?v=${static.file.version}\"\></value>
                         </replacement>
                         <replacement>
                             <token>\.js\'\></token>
-                            <value>.js?v=${build.time}\'\></value>
+                            <value>.js?v=${static.file.version}\'\></value>
                         </replacement>
                     </replacements>
                     <!--解决mvn 打包 maven-replacer-plugin 插件中文乱码问题-->
