@@ -3,6 +3,8 @@ package com.yzd.web.api.controllerApi;
 import com.yzd.temp.service.inf.dto.tempTest.TempTestDTO;
 import com.yzd.web.api.model.response._base.JsonResult;
 import com.yzd.web.api.model.response._base.JsonResultOk;
+import com.yzd.web.api.utils.lockExt.mutexLockExt.accessUUID.MutexKeyForAccessUUID;
+import com.yzd.web.api.utils.lockExt.mutexLockExt.accessUUID.MutexLockByAccessUUID;
 import com.yzd.web.service.TempTestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ public class TempControllerAPI {
     TempTestService tempTestService;
 
     @GetMapping("save")
+    //通过Token中访问UUID值的互斥锁（顺序执行锁），作用：保证同一操作的顺序执行
+    @MutexLockByAccessUUID(key = MutexKeyForAccessUUID.SaveTemptestLock)
     public JsonResult save() {
         TempTestDTO tempTestDTO=new TempTestDTO();
         tempTestDTO.setName("my");

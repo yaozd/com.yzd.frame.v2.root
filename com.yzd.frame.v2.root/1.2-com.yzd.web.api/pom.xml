@@ -37,6 +37,11 @@
             <artifactId>com.yzd.logging.dubbo</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.yzd.frame.v2.root</groupId>
+            <artifactId>com.yzd.common.cache</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
         <!--========================================================-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

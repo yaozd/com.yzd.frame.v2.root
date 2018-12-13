@@ -24,6 +24,7 @@
         <module>7.1-com.yzd.logging.sensitive</module>
         <module>7.2-com.yzd.id.generator.service.inf</module>
         <module>7.2-com.yzd.id.generator.service.provider</module>
+        <module>7.3-com.yzd.common.cache</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -160,6 +161,12 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>21.0</version>
+            </dependency>
+            <!--========================================================-->
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>2.8.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
