@@ -30,7 +30,8 @@ public class TempControllerAPI {
         //Integer result = tempTestService.save(new TempTestDTO());
         Integer result = tempTestService.save(tempTestDTO);
         log.info("result={}", result);
-        return new JsonResultOk("result="+result);
+        //return new JsonResultOk("result="+result);
+        return JsonResultOk.SUCCESS;
 
     }
 }

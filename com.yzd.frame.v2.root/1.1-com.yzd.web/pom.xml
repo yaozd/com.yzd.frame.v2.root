@@ -84,6 +84,7 @@
                         <include>**/classes/templates/**/*.vm</include>
                     </includes>
                     <replacements>
+                        <!--“"\>”主要是为了正则匹配时，减少误操作-->
                         <replacement>
                             <token>\.css\"\></token>
                             <value>.css?v=${static.file.version}\"\></value>

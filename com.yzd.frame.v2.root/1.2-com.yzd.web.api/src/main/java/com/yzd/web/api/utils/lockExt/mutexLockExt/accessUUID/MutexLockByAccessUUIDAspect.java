@@ -33,7 +33,7 @@ public class MutexLockByAccessUUIDAspect {
 
         CurrentUser user = CurrentUserContextHolder.get();
         if (user == null) {
-            return new JsonResultError("没有找到有效Token");
+            return JsonResultError.NotFoundTokenFail;
         }
         Method method = AspectUtil.getMethod(proceedingJoinPoint);
         MutexLockByAccessUUID mutexLockByAccessUUID=AspectUtil.getAnnotation(method,MutexLockByAccessUUID.class);
@@ -44,7 +44,7 @@ public class MutexLockByAccessUUIDAspect {
         ShardedRedisUtil redisUtil = ShardedRedisUtil.getInstance();
         String isLock = redisUtil.set(fullKey, timestamp, "nx", "ex", secondsEx);
         if(!"OK".equalsIgnoreCase(isLock)){
-            return new JsonResultError("操作正在执行，请不要重复提交！");
+            return JsonResultError.RepeatedSubmitRequest;
         }
         try {
             return proceedingJoinPoint.proceed();

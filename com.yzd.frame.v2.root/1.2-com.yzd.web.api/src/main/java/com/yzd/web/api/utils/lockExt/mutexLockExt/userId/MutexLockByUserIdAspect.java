@@ -28,8 +28,9 @@ public class MutexLockByUserIdAspect {
     public Object aroundMethod(ProceedingJoinPoint proceedingJoinPoint) {
 
         CurrentUser user = CurrentUserContextHolder.get();
-        if (user == null) {
-            return new JsonResultError("尚未登录");
+        boolean isNotLogin=user == null||user.getId()==null||user.getId()<1;
+        if (isNotLogin) {
+            return JsonResultError.ForbiddenAccess;
         }
         Method method = AspectUtil.getMethod(proceedingJoinPoint);
         MutexLockByUserId mutexLockByUserId=AspectUtil.getAnnotation(method,MutexLockByUserId.class);
@@ -40,7 +41,7 @@ public class MutexLockByUserIdAspect {
         ShardedRedisUtil redisUtil = ShardedRedisUtil.getInstance();
         String isLock = redisUtil.set(fullKey, timestamp, "nx", "ex", secondsEx);
         if(!"OK".equalsIgnoreCase(isLock)){
-            return new JsonResultError("操作正在执行，请不要重复提交！");
+            return JsonResultError.RepeatedSubmitRequest;
         }
         try {
             return proceedingJoinPoint.proceed();

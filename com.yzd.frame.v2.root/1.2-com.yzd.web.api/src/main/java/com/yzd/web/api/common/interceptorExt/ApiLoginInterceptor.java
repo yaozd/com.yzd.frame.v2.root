@@ -3,6 +3,7 @@ package com.yzd.web.api.common.interceptorExt;
 import com.yzd.common.token.enumExt.ErrorCodeJWT;
 import com.yzd.common.token.session.CurrentUser;
 import com.yzd.common.token.session.CurrentUserContextHolder;
+import com.yzd.web.api.model.response._base.JsonResult;
 import com.yzd.web.api.model.response._base.JsonResultError;
 import com.yzd.web.api.utils.fastjsonExt.FastJsonUtil;
 import org.apache.commons.lang3.BooleanUtils;
@@ -22,11 +23,11 @@ public class ApiLoginInterceptor implements HandlerInterceptor {
         boolean isLogin = currentUser != null && currentUser.getId()!=null;
         if (BooleanUtils.isNotTrue(isLogin)) {
             //403
-            int errorCode=ErrorCodeJWT.ForbiddenAccess.getValue();
-            response.setStatus(errorCode);
+            JsonResult forbiddenAccessJsonResultError=JsonResultError.ForbiddenAccess;
+            response.setStatus(forbiddenAccessJsonResultError.getCode());
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-            String jsonResult = FastJsonUtil.serialize(new JsonResultError("用户没有登录，暂无访问权限",errorCode));
+            String jsonResult = FastJsonUtil.serialize(forbiddenAccessJsonResultError);
             response.getWriter().write(jsonResult);
             return false;
         }

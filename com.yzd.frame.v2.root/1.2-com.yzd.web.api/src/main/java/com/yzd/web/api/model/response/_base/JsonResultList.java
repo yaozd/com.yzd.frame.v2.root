@@ -1,5 +1,7 @@
 package com.yzd.web.api.model.response._base;
 
+import com.yzd.web.api.utils.enumExt.JsonResultCodeEnum;
+
 import java.util.List;
 
 /**
@@ -9,13 +11,13 @@ public class JsonResultList<T> extends JsonResult {
     public JsonResultList() {
     }
 
-    public JsonResultList(List<T> data) {
-        this.setSuccess(true);
+    private JsonResultList(List<T> data) {
+        super(JsonResultCodeEnum.SUCCESS.OK.getCode(),JsonResultCodeEnum.SUCCESS.OK.getMessage());
         this.setData(data);
     }
 
-    public JsonResultList(List<T> data, int total) {
-        this.setSuccess(true);
+    private JsonResultList(List<T> data, int total) {
+        super(JsonResultCodeEnum.SUCCESS.OK.getCode(),JsonResultCodeEnum.SUCCESS.OK.getMessage());
         this.setData(data);
         this.setTotal(total);
     }
@@ -27,7 +29,7 @@ public class JsonResultList<T> extends JsonResult {
         return data;
     }
 
-    public void setData(List<T> data) {
+    private void setData(List<T> data) {
         this.data = data;
     }
 
@@ -35,7 +37,14 @@ public class JsonResultList<T> extends JsonResult {
         return total;
     }
 
-    public void setTotal(int total) {
+    private void setTotal(int total) {
         this.total = total;
+    }
+
+    public static <T> JsonResultList build(List<T> data){
+        return new JsonResultList(data);
+    }
+    public static <T> JsonResultList build(List<T> data, int total){
+        return new JsonResultList(data,total);
     }
 }

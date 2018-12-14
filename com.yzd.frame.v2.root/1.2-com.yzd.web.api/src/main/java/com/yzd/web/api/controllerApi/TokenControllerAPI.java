@@ -44,7 +44,7 @@ public class TokenControllerAPI {
         filterForGetBaseToken(form,sign);
         //创建 token,当user为null时是未登录的访问token
         String token= JWTUtil3.createToken(CurrentUser.createEmptyUser());
-        return new JsonResultData(token);
+        return JsonResultData.build(token);
     }
 
     /***
@@ -61,9 +61,9 @@ public class TokenControllerAPI {
         filterForGetBaseToken(form, sign);
         RefreshResultJWT refreshResultJWT=JWTUtil3.refreshToken(form.getRefreshToken(),CurrentUser.class);
         if(refreshResultJWT.getIsOk()){
-           return new JsonResultData(refreshResultJWT.getToken());
+           return JsonResultData.build(refreshResultJWT.getToken());
         }
-        return new JsonResultError(refreshResultJWT.getErrorMsg(), ErrorCodeJWT.RefreshTokenFail.getValue());
+        return JsonResultError.RefreshTokenFail;
     }
     /***
      * getBaseToken方法的请求数据有效性进行过滤验证

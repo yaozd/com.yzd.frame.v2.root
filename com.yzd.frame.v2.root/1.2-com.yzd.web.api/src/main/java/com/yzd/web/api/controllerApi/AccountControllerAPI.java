@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountControllerAPI {
     @PostMapping("doLogin")
     public JsonResult doLogin(@ParamValid LoginForm loginForm) {
-        return new JsonResultOk("doLogin") ;
+        return JsonResultOk.SUCCESS ;
     }
 
     @PostMapping("doLogout")
     public JsonResult doLogout(){
-        return new JsonResultOk() ;
+        return JsonResultOk.SUCCESS ;
     }
 }

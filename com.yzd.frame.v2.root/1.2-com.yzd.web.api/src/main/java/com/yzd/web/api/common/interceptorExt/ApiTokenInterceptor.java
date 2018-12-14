@@ -5,6 +5,7 @@ import com.yzd.common.token.jwtExt.JWTUtil3;
 import com.yzd.common.token.jwtExt.VerifyResultJWT;
 import com.yzd.common.token.session.CurrentUser;
 import com.yzd.common.token.session.CurrentUserContextHolder;
+import com.yzd.web.api.model.response._base.JsonResult;
 import com.yzd.web.api.model.response._base.JsonResultError;
 import com.yzd.web.api.utils.fastjsonExt.FastJsonUtil;
 import org.apache.commons.lang3.BooleanUtils;
@@ -23,11 +24,11 @@ public class ApiTokenInterceptor implements HandlerInterceptor {
         String accessToken = httpServletRequest.getHeader("Authorization");
         if(StringUtils.isBlank(accessToken)){
             //4100
-            int errorCode=ErrorCodeJWT.NotFoundTokenFail.getValue();
-            httpServletResponse.setStatus(errorCode);
+            JsonResult notFoundTokenFailJsonResultError=JsonResultError.NotFoundTokenFail;
+            httpServletResponse.setStatus(notFoundTokenFailJsonResultError.getCode());
             httpServletResponse.setContentType("application/json");
             httpServletResponse.setCharacterEncoding("UTF-8");
-            String jsonResult = FastJsonUtil.serialize(new JsonResultError("Not Found Token In Header",errorCode));
+            String jsonResult = FastJsonUtil.serialize(notFoundTokenFailJsonResultError);
             httpServletResponse.getWriter().write(jsonResult);
             return false;
         }
@@ -37,11 +38,11 @@ public class ApiTokenInterceptor implements HandlerInterceptor {
         VerifyResultJWT verifyResultJWT = JWTUtil3.verifyToken(accessToken);
         if(BooleanUtils.isNotTrue(verifyResultJWT.getIsOk())){
             //4101
-            int errorCode=ErrorCodeJWT.VerifyTokenFail.getValue();
-            httpServletResponse.setStatus(errorCode);
+            JsonResult verifyTokenFailJsonResultError=JsonResultError.VerifyTokenFail;
+            httpServletResponse.setStatus(verifyTokenFailJsonResultError.getCode());
             httpServletResponse.setContentType("application/json");
             httpServletResponse.setCharacterEncoding("UTF-8");
-            String jsonResult = FastJsonUtil.serialize(new JsonResultError(verifyResultJWT.getErrorMsg(),errorCode));
+            String jsonResult = FastJsonUtil.serialize(verifyTokenFailJsonResultError);
             httpServletResponse.getWriter().write(jsonResult);
             return false;
         }

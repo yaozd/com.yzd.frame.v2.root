@@ -14,6 +14,6 @@ public class UserControllerAPI {
     @GetMapping("details")
     public JsonResult details(){
 
-        return new JsonResultOk("details");
+        return JsonResultOk.SUCCESS;
     }
 }
