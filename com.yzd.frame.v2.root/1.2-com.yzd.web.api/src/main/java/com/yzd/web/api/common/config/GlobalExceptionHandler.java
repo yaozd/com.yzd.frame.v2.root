@@ -1,6 +1,7 @@
 package com.yzd.web.api.common.config;
 
 import com.yzd.web.api.common.exceptionExt.DataValidException;
+import com.yzd.web.api.common.exceptionExt.JsonResultException;
 import com.yzd.web.api.common.exceptionExt.TokenValidException;
 import com.yzd.web.api.common.exceptionExt.UnauthorizedException;
 import com.yzd.web.api.common.paramValidExt.ParamValidException;
@@ -76,5 +77,20 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         //生产上会用统一的的输出格式- new JsonResultList
         //当前属于api请求参数的格式验证异常-所以状态是200
         return JsonResultError.build(ex.getMessage());
+    }
+
+    /***
+     * JsonResultException
+     * 这种异常大部分的结果是要前台做业务逻辑处理
+     * -返回数据根据code码，在页面做相关业务逻辑处理
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler(JsonResultException.class)
+    @ResponseBody
+    JsonResult handleControllerExceptionForJsonResultException(JsonResultException ex) {
+        //生产上会用统一的的输出格式- new JsonResultList
+        //当前属于api请求参数的格式验证异常-所以状态是200
+        return ex.getResult();
     }
 }

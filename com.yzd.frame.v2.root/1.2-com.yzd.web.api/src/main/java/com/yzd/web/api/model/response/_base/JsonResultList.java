@@ -16,14 +16,14 @@ public class JsonResultList<T> extends JsonResult {
         this.setData(data);
     }
 
-    private JsonResultList(List<T> data, int total) {
+    private JsonResultList(List<T> data, Integer total) {
         super(JsonResultCodeEnum.SUCCESS.OK.getCode(),JsonResultCodeEnum.SUCCESS.OK.getMessage());
         this.setData(data);
         this.setTotal(total);
     }
 
     private List<T> data;
-    private int total;
+    private Integer total;
 
     public List<T> getData() {
         return data;
@@ -33,18 +33,18 @@ public class JsonResultList<T> extends JsonResult {
         this.data = data;
     }
 
-    public int getTotal() {
+    public Integer getTotal() {
         return total;
     }
 
-    private void setTotal(int total) {
+    private void setTotal(Integer total) {
         this.total = total;
     }
 
     public static <T> JsonResultList build(List<T> data){
         return new JsonResultList(data);
     }
-    public static <T> JsonResultList build(List<T> data, int total){
+    public static <T> JsonResultList build(List<T> data, Integer total){
         return new JsonResultList(data,total);
     }
 }

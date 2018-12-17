@@ -4,6 +4,7 @@ import com.yzd.common.cache.redis.sharded.ShardedRedisUtil;
 import com.yzd.common.cache.utils.setting.CachedSetting;
 import com.yzd.common.token.session.CurrentUser;
 import com.yzd.common.token.session.CurrentUserContextHolder;
+import com.yzd.web.api.common.exceptionExt.JsonResultException;
 import com.yzd.web.api.model.response._base.JsonResultError;
 import com.yzd.web.api.utils.aspectExt.AspectUtil;
 import com.yzd.web.api.utils.dateExt.DateUtil;
@@ -41,7 +42,7 @@ public class MutexLockByUserIdAspect {
         ShardedRedisUtil redisUtil = ShardedRedisUtil.getInstance();
         String isLock = redisUtil.set(fullKey, timestamp, "nx", "ex", secondsEx);
         if(!"OK".equalsIgnoreCase(isLock)){
-            return JsonResultError.RepeatedSubmitRequest;
+            throw new JsonResultException(JsonResultError.RepeatedSubmitRequest);
         }
         try {
             return proceedingJoinPoint.proceed();

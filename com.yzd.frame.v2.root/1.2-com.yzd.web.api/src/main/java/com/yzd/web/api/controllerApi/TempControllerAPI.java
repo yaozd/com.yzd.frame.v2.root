@@ -1,10 +1,8 @@
 package com.yzd.web.api.controllerApi;
 
 import com.yzd.temp.service.inf.dto.tempTest.TempTestDTO;
-import com.yzd.web.api.common.exceptionExt.DataValidException;
-import com.yzd.web.api.model.response._base.JsonResult;
-import com.yzd.web.api.model.response._base.JsonResultError;
-import com.yzd.web.api.model.response._base.JsonResultOk;
+import com.yzd.web.api.model.response._base.*;
+import com.yzd.web.api.model.response.temp.TempTestVM;
 import com.yzd.web.api.utils.lockExt.mutexLockExt.accessUUID.MutexKeyForAccessUUID;
 import com.yzd.web.api.utils.lockExt.mutexLockExt.accessUUID.MutexLockByAccessUUID;
 import com.yzd.web.service.TempTestService;
@@ -13,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -47,5 +48,29 @@ public class TempControllerAPI {
             throw JsonResultError.newDataValidException("1!=2");
         }
         return JsonResultOk.SUCCESS;
+    }
+
+    /**
+     * Swagger-响应泛型数据结果
+     * @return
+     */
+    @GetMapping("getTempTest")
+    public JsonResultData<TempTestVM> getTempTest(){
+        TempTestVM tempTestVM=new TempTestVM();
+        tempTestVM.setName("name");
+        return JsonResultData.build(tempTestVM);
+    }
+
+    /***
+     * Swagger-响应泛型数据结果
+     * @return
+     */
+    @GetMapping("getTempTestList")
+    public JsonResultList<TempTestVM> getTempTestList(){
+        TempTestVM tempTestVM=new TempTestVM();
+        tempTestVM.setName("name");
+        List<TempTestVM> tempTestVMList=new ArrayList<>();
+        tempTestVMList.add(tempTestVM);
+        return JsonResultList.build(tempTestVMList);
     }
 }
