@@ -1,7 +1,9 @@
 package com.yzd.web.api.controllerApi;
 
 import com.yzd.temp.service.inf.dto.tempTest.TempTestDTO;
+import com.yzd.web.api.common.exceptionExt.DataValidException;
 import com.yzd.web.api.model.response._base.JsonResult;
+import com.yzd.web.api.model.response._base.JsonResultError;
 import com.yzd.web.api.model.response._base.JsonResultOk;
 import com.yzd.web.api.utils.lockExt.mutexLockExt.accessUUID.MutexKeyForAccessUUID;
 import com.yzd.web.api.utils.lockExt.mutexLockExt.accessUUID.MutexLockByAccessUUID;
@@ -33,5 +35,17 @@ public class TempControllerAPI {
         //return new JsonResultOk("result="+result);
         return JsonResultOk.SUCCESS;
 
+    }
+
+    /**
+     * 参数有数据性验证
+     * @return
+     */
+    @GetMapping("dataValidTest")
+    public JsonResult dataValidTest(){
+        if(1!=2){
+            throw JsonResultError.newDataValidException("1!=2");
+        }
+        return JsonResultOk.SUCCESS;
     }
 }
