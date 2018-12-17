@@ -7,6 +7,9 @@ import com.yzd.web.api.common.exceptionExt.UnauthorizedException;
 import com.yzd.web.api.common.paramValidExt.ParamValidException;
 import com.yzd.web.api.model.response._base.JsonResult;
 import com.yzd.web.api.model.response._base.JsonResultError;
+import com.yzd.web.api.utils.encryptExt.MD5Util;
+import com.yzd.web.api.utils.exceptionExt.ExceptionUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+@Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -27,6 +31,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     JsonResult handleControllerException(Exception ex) {
         //生产上会用统一的的输出格式- new JsonResultList
         //当前属于api请求参数的格式验证异常-所以状态是200
+        //未知异常信息
+        //对于未知异常信息，可以把异常堆栈信息MD5，
+        //然后通过钉钉发送MD5值预警或把MD5值发送到后台，让开发人员及时处理。
+        //通过MD5值来追踪信息
+        String errorMessage = getErrorMessageForInner(ex);
+        String md5Val= MD5Util.encode(errorMessage);
+        logger.error(String.format("handleControllerException-[%s]-异常详细信息:%s",md5Val,errorMessage));
         return JsonResultError.buildForInnerError(ex.getMessage());
     }
     /***
@@ -92,5 +103,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         //生产上会用统一的的输出格式- new JsonResultList
         //当前属于api请求参数的格式验证异常-所以状态是200
         return ex.getResult();
+    }
+    /***
+     * 针对应用程序内部的异常-打印堆栈信息
+     * @param ex
+     * @return
+     */
+    private String getErrorMessageForInner(Exception ex) {
+        return ExceptionUtil.exceptionToString(ex);
     }
 }
