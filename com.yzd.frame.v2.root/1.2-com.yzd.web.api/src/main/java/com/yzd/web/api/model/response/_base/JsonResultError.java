@@ -13,6 +13,9 @@ import java.util.Map;
  */
 
 public class JsonResultError {
+    private JsonResultError() {
+        throw new IllegalStateException("JsonResultError class");
+    }
     public static final JsonResult Unauthorized=new JsonResult(JsonResultCodeEnum.ERROR.Unauthorized.getCode(),JsonResultCodeEnum.ERROR.Unauthorized.getMessage());
 
     public static final JsonResult ForbiddenAccess=new JsonResult(JsonResultCodeEnum.ERROR.ForbiddenAccess.getCode(),JsonResultCodeEnum.ERROR.ForbiddenAccess.getMessage());
