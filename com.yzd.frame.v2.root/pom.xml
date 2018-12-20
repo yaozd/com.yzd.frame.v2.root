@@ -178,6 +178,30 @@
         </dependency>
     </dependencies>
     <build>
+        <pluginManagement>
+            <plugins>
+                <!--主要功能：maven打jar包时带上 git commit相关信息，可以更加方便的识别当前执行的版本-->
+                <plugin>
+                    <groupId>pl.project13.maven</groupId>
+                    <artifactId>git-commit-id-plugin</artifactId>
+                    <version>2.2.0</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>revision</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <!--verbose=false可以节省时间-->
+                        <verbose>false</verbose>
+                        <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                        <injectAllReactorProjects>true</injectAllReactorProjects>
+                        <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <!-- 时间戳插件 start -->
             <plugin>
@@ -203,6 +227,11 @@
                 </configuration>
             </plugin>
             <!-- 时间戳插件 end -->
+            <!--主要功能：maven打jar包时带上 git commit相关信息，可以更加方便的识别当前执行的版本-->
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
     <repositories>
