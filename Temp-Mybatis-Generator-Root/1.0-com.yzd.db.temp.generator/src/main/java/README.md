@@ -3,7 +3,11 @@
 ```
 如果当前项目有多个数据库可以创建多个模块即可。
 ```
-### selectAll替换模板
+### selectAll替换Mapper模板
+```
+List<TbTagUser> selectAll(@Param("pojo") TbTagUser pojo);
+```
+### selectAll替换XML模板
 ```
   <!--auto generated Code-->
   <select id="selectAll" resultMap="BaseResultMap">
