@@ -3,6 +3,7 @@ package com.yzd.web.api.controllerApi;
 import com.yzd.temp.service.inf.dto.tempTest.TempTestDTO;
 import com.yzd.web.api.model.response._base.*;
 import com.yzd.web.api.model.response.temp.TempTestVM;
+import com.yzd.web.api.utils.dataExt.DataCheckUtil;
 import com.yzd.web.api.utils.lockExt.mutexLockExt.accessUUID.MutexKeyForAccessUUID;
 import com.yzd.web.api.utils.lockExt.mutexLockExt.accessUUID.MutexLockByAccessUUID;
 import com.yzd.web.service.TempTestService;
@@ -27,7 +28,7 @@ public class TempControllerAPI {
     //通过Token中访问UUID值的互斥锁（顺序执行锁），作用：保证同一操作的顺序执行
     @MutexLockByAccessUUID(key = MutexKeyForAccessUUID.SaveTemptestLock)
     public JsonResult save() {
-        TempTestDTO tempTestDTO=new TempTestDTO();
+        TempTestDTO tempTestDTO = new TempTestDTO();
         tempTestDTO.setName("my");
         tempTestDTO.setPassword("123456");
         //Integer result = tempTestService.save(new TempTestDTO());
@@ -40,23 +41,30 @@ public class TempControllerAPI {
 
     /**
      * 参数有数据性验证
+     *
      * @return
      */
     @GetMapping("dataValidTest")
-    public JsonResult dataValidTest(){
-        if(1!=2){
+    public JsonResult dataValidTest() {
+        // 数据校验
+        // 方法一：可提高代码的可读性
+        DataCheckUtil.checkDataThrowException(1 != 2, "异常提示信息：1!=2");
+        // 方法二：
+        if (1 != 2) {
             throw JsonResultError.newDataValidException("1!=2");
         }
+        //
         return JsonResultOk.SUCCESS;
     }
 
     /**
      * Swagger-响应泛型数据结果
+     *
      * @return
      */
     @GetMapping("getTempTest")
-    public JsonResultData<TempTestVM> getTempTest(){
-        TempTestVM tempTestVM=new TempTestVM();
+    public JsonResultData<TempTestVM> getTempTest() {
+        TempTestVM tempTestVM = new TempTestVM();
         tempTestVM.setName("name");
         return JsonResultData.build(tempTestVM);
     }
@@ -66,10 +74,10 @@ public class TempControllerAPI {
      * @return
      */
     @GetMapping("getTempTestList")
-    public JsonResultList<TempTestVM> getTempTestList(){
-        TempTestVM tempTestVM=new TempTestVM();
+    public JsonResultList<TempTestVM> getTempTestList() {
+        TempTestVM tempTestVM = new TempTestVM();
         tempTestVM.setName("name");
-        List<TempTestVM> tempTestVMList=new ArrayList<>();
+        List<TempTestVM> tempTestVMList = new ArrayList<>();
         tempTestVMList.add(tempTestVM);
         return JsonResultList.build(tempTestVMList);
     }
