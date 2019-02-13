@@ -3,9 +3,9 @@ package com.yzd.web.api.controllerApi;
 import com.yzd.temp.service.inf.dto.tempTest.TempTestDTO;
 import com.yzd.web.api.model.response._base.*;
 import com.yzd.web.api.model.response.temp.TempTestVM;
-import com.yzd.web.api.utils.dataExt.DataCheckUtil;
 import com.yzd.web.api.utils.lockExt.mutexLockExt.accessUUID.MutexKeyForAccessUUID;
 import com.yzd.web.api.utils.lockExt.mutexLockExt.accessUUID.MutexLockByAccessUUID;
+import com.yzd.web.api.utils.preconditionsExt.PreconditionsUtil;
 import com.yzd.web.service.TempTestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +48,7 @@ public class TempControllerAPI {
     public JsonResult dataValidTest() {
         // 数据校验
         // 方法一：可提高代码的可读性
-        DataCheckUtil.checkDataThrowException(1 != 2, "异常提示信息：1!=2");
+        PreconditionsUtil.checkDataThrowException(1 != 2, "异常提示信息：1!=2");
         // 方法二：
         if (1 != 2) {
             throw JsonResultError.newDataValidException("1!=2");
