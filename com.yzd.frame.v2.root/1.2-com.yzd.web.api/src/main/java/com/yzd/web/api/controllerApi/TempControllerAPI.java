@@ -6,7 +6,7 @@ import com.yzd.web.api.model.response.temp.TempTestVM;
 import com.yzd.web.api.utils.lockExt.mutexLockExt.accessUUID.MutexKeyForAccessUUID;
 import com.yzd.web.api.utils.lockExt.mutexLockExt.accessUUID.MutexLockByAccessUUID;
 import com.yzd.web.api.utils.preconditionsExt.PreconditionsUtil;
-import com.yzd.web.service.TempTestService;
+import com.yzd.web.service.service.TempTestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

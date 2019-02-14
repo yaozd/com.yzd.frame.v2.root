@@ -1,4 +1,4 @@
-package com.yzd.web.service;
+package com.yzd.web.service.service;
 
 import com.yzd.temp.service.inf.dto.tempTest.TempTestDTO;
 import com.yzd.temp.service.inf.inf.tempTest.ITempTestInfForFront;
